@@ -2,7 +2,7 @@ RandAL - Randomized Sequence Aligner
 ------------------------------------
 RandAL is a tool for aligning DNA sequences to reference genomes. The tool is developed based on a new randomized algorithm with the distinction of having high performance across a wide range of read lengths and base error rates.
 
-RandAL is implemented in C++; FM-index codes are adapted from an external library (http://code.google.com/p/fmindex-plus-plus). The tool is tested with Debian, Ubuntu, Mac OS machines. More detail about RandAL can be found in our paper "A Randomized Algorithm for Aligning DNA Sequences to Reference Genomes, ICCABS proceeding, 2013".
+More detail about RandAL can be found in our paper "A Randomized Algorithm for Aligning DNA Sequences to Reference Genomes, ICCABS proceeding, 2013".
 
 File organization:
 /src: source code of RandAL.

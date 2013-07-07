@@ -1,52 +1,17 @@
-RandAL
-======
-Randomized Sequence Aligner.
+1. do_exps.py
+Testing RandAL with multiple simulated datasets:
 
-0. Build the RandAL:
-On Linux machine (Debian, Ubuntu) with g++ 4.7.2 or later : use the following line in make file:
-CXXFLAGS = -O3 -Wall -DNDEBUG -Wno-deprecated -pedantic -finline-functions -foptimize-sibling-calls -Wcast-qual -Wwrite-strings -Wsign-promo -Wcast-align -Wno-long-long -fexpensive-optimizations -funroll-all-loops -ffast-math -fomit-frame-pointer -pipe -std=c++0x
+Usage:  python do_exps.py -r ref -l read_len -e error_rate -o overall_results.txt
 
-On Mac machine (Mac OS X) with g++ 4.2 or later:  use the following line in make file:
-CXXFLAGS = -O3 -Wall -DNDEBUG -Wno-deprecated -pedantic -finline-functions -foptimize-sibling-calls -Wcast-qual -Wwrite-strings -Wsign-promo -Wcast-align -Wno-long-long -fexpensive-optimizations -funroll-all-loops -ffast-math -fomit-frame-pointer -pipe
-
-
-1. Indexing a reference genome:
-Usage:  randal-build RefFileName.fasta [IndexFileName]
-        RefFileName       	: reference file name (in FASTA format).
-        [IndexFileName]     : index file name, if not indicated, the RefFileName will be used for this.
+        bacterial_refs = ['Dros', 'Ecoli', 'Pseu', 'Stap', 'Strep', 'Soran']
+        eukaryotic_refs = ['CaenoI', 'DebaA', 'EctoLG01', 'SchizoI', 'Dros3R', 'Taeni10']
+        read_lens = [35, 51, 76, 100, 200, 400]
+        error_rates = [0.01, 0.02, 0.04]
 Ouput:
-IndexFileName.ref
-IndexFileName.rev
-IndexFileName.bw
-IndexFileName.fw
+        overall_results.txt
 
-2. Aligning reads to the reference:
-Usage:  randal IndexFileName ReadFileName MapFileName [OPTION]
-        IndexFileName       : index file name (from preprocessing step with randal-build).
-        ReadFileName        : read file name (in FASTQ format).
-        MapFileName         : file to store alignment result (in SAM format).
-        [OPTION]            : a list of zero or more optional arguments, if not indicated, default values will be used.
-                -mode number    : distance mode (2: hamming distance; 3: edit distance; default: 3).
-                -th number      : threshould for distance (integer, >= 0, default: calculated based on input).
-                -att number     : number of attempts for the randomization (integer, > 0, default: calculated based on input).
-                -minws number   : minimal length of common substring between read and reference (integer, > 0, < read length, default: calculated based on input).
-                -maxcdt number  : maximal number of candidates for alignment (integer, > 0, default: 2).
+2. wgsim_eval.pl
+Perl script to evaluate a SAM output and then produce result to screen. Original code from https://github.com/lh3/wgsim.
 
-3. Calculating default parameters:
-th = int(math.floor(error_rate * length + th_para * math.sqrt(length * error_rate * (1 - error_rate))))
-att = att_para * (th + 1)
-minws = int(math.ceil(length/(th + 1))) + 3
-
-default: att_para = 1, th_para = 4
-position range to search for randomized: (10, length-10)
-
-4. Testing:
-Usage:  python do_exps.py
-
-bacterial_refs = ['Dros', 'Ecoli', 'Pseu', 'Stap', 'Strep', 'Soran']
-eukaryotic_refs = ['CaenoI', 'DebaA', 'EctoLG01', 'SchizoI', 'Dros3R', 'Taeni10']
-read_lens = [35, 51, 76, 100, 200, 400]
-error_rates = [0.01, 0.02, 0.04]
-
-Ouput:
-overall_results.txt
+3. wgsim_eval_tofile.pl
+Perl script to evaluate a SAM ouput and then write results (including error mapped reads) to files. Modified from wgsim_eval.pl.
