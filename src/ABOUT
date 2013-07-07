@@ -1,0 +1,8 @@
+RandAL is a tool developed based on a new randomized algorithm with the distinction of having high performance across a wide range of read lengths and base error rates.
+
+RandAL is implemented in C++; FM-index codes are adapted from an external library (http://code.google.com/p/fmindex-plus-plus). The tool is tested with Debian, Ubuntu, Mac OS machines.
+
+Contact:
+nsvo1@memphis.edu
+qmtran@memphis.edu
+vinhthuyphan@memphis.edu

@@ -16,23 +16,23 @@ SRCS1 = \
 	fmIndex.cpp \
 
 SRCS2 = \
-	construct.cpp \
+	randal_index.cpp \
 
 SRCS3 = \
-	ReadAlignment.cpp \
-	Randomized.cpp \
+	randal_search.cpp \
+	randal_align.cpp \
 
 OBJS1 = $(SRCS1:%.cpp=%.o)
 OBJS2 = $(SRCS2:%.cpp=%.o)
 OBJS3 = $(SRCS3:%.cpp=%.o)
 
-all: construct align
+all: index align
 
-construct: $(OBJS1) $(OBJS2)
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(OBJS1) $(OBJS2) -o randal-build
+index: $(OBJS1) $(OBJS2)
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(OBJS1) $(OBJS2) -o randal-index
 
 align: $(OBJS1) $(OBJS3)
-	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(OBJS1) $(OBJS3) -o randal
+	$(CXX) $(CXXFLAGS) $(LINKFLAGS) $(OBJS1) $(OBJS3) -o randal-align
 
 debug:
 	make all CXXFLAGS="-ggdb -W -Wall -pedantic"
@@ -41,4 +41,4 @@ debug:
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm -f randal-build randal *.o *~
+	rm -f randal-index randal-align *.o *~
