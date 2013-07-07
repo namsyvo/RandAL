@@ -2,15 +2,12 @@ RandAL - MANUAL
 ---------------
 
 0. Build the RandAL from source code:
-Run make with the following notice:
-
-On Linux machine (Debian, Ubuntu) with g++ 4.7.2 or later:
-CXXFLAGS = -O3 -Wall -DNDEBUG -Wno-deprecated -pedantic -finline-functions -foptimize-sibling-calls -Wcast-qual -Wwrite-strings -Wsign-promo -Wcast-align -Wno-long-long -fexpensive-optimizations -funroll-all-loops -ffast-math -fomit-frame-pointer -pipe -std=c++0x
-
-On Mac machine (Mac OS X) with g++ 4.2 or later:
-CXXFLAGS = -O3 -Wall -DNDEBUG -Wno-deprecated -pedantic -finline-functions -foptimize-sibling-calls -Wcast-qual -Wwrite-strings -Wsign-promo -Wcast-align -Wno-long-long -fexpensive-optimizations -funroll-all-loops -ffast-math -fomit-frame-pointer -pipe
-
-
+Usage: make [index] [align] [debug] [clean]
+        index: to construct indexing part of RandAL.
+        align: to construct alignment part of RandAL.
+        clean: to clean everything except source code.
+        debug: for develper, to build the debug version of RandAL (to debug with GNU gdb).
+        
 1. Indexing a reference genome:
 Usage:  randal-index RefFileName.fasta [IndexFileName]
         RefFileName     : reference file name (in FASTA format).

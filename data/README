@@ -3,5 +3,5 @@ Datasets for testing with RandAL:
         Staphylococcus.fasta (bacterium)
         Drosophila melanogaster chromosome 3R.fasta (eukaryote)
 /reads: store simulated reads for above genomes with length from 35bps to 400bps:
-        /Stap: store reads for Staphylococcus
-        /Dros: store reads for Drosophila melanogaster chromosome 3R
+        /Stap: simulated reads for Staphylococcus
+        /Dros: simulated reads for Drosophila melanogaster chromosome 3R
