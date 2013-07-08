@@ -1,17 +1,14 @@
+Supporting scripts to run and evaluate RandAL
+---------------------------------------------
+
 1. do_exps.py
-Testing RandAL with multiple simulated datasets:
+Python script to test RandAL with multiple simulated datasets:
 
-Usage:  python do_exps.py -r ref -l read_len -e error_rate -o overall_results.txt
-
-        bacterial_refs = ['Dros', 'Ecoli', 'Pseu', 'Stap', 'Strep', 'Soran']
-        eukaryotic_refs = ['CaenoI', 'DebaA', 'EctoLG01', 'SchizoI', 'Dros3R', 'Taeni10']
-        read_lens = [35, 51, 76, 100, 200, 400]
-        error_rates = [0.01, 0.02, 0.04]
-Ouput:
-        overall_results.txt
+Usage:  python do_exps.py -r ref -l read_len -e error_rate -o result_file_name
+For example: python do_exps.py -r Stap -r Dros -l 35 -l 51 -e 0.02 -e 0.04 -o overall_results.txt
 
 2. wgsim_eval.pl
 Perl script to evaluate a SAM output and then produce result to screen. Original code from https://github.com/lh3/wgsim.
 
 3. wgsim_eval_tofile.pl
-Perl script to evaluate a SAM ouput and then write results (including error mapped reads) to files. Modified from wgsim_eval.pl.
+Perl script to evaluate a SAM ouput and then write results (including error mapped reads) to files, used in the do_exps.py Python script. Modified from wgsim_eval.pl.

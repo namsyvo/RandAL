@@ -1,37 +1,44 @@
 RandAL - MANUAL
 ---------------
 
-0. Build the RandAL from source code:
+1. USAGE
+
+1.1. Building RandAL from source code:
 Usage: make [index] [align] [debug] [clean]
         index: to construct indexing part of RandAL.
         align: to construct alignment part of RandAL.
         clean: to clean everything except source code.
-        debug: for develper, to build the debug version of RandAL (to debug with GNU gdb).
-        
-1. Indexing a reference genome:
+        debug: for develper, to build a debug version of RandAL.
+
+1.2. Indexing a reference genome:
 Usage:  randal-index RefFileName.fasta [IndexFileName]
         RefFileName     : reference file name (in FASTA format).
-        [IndexFileName] : index file name (in randal's binary format), the reference file name will be used if not indicated.
+        [IndexFileName] : index file name (in randal's binary format), the reference file name will be used if not indicated. This name will be used for the following index files:
                         IndexFileName.ref
                         IndexFileName.rev
                         IndexFileName.bw
                         IndexFileName.fw
 
-2. Aligning reads to the reference:
+1.3. Aligning reads to the reference:
 Usage:  randal-align IndexFileName ReadFileName MapFileName [OPTIONS]
-        IndexFileName       : index file name (from preprocessing step with randal-build).
+        IndexFileName       : index file name (from preprocessing step with randal-index).
         ReadFileName        : read file name (in FASTQ format).
-        MapFileName         : file to store alignment result (in SAM format).
+        MapFileName         : map file name, store alignment result (in SAM format).
         [OPTIONS]           : a list of zero or more optional arguments, default values will be used if not indicated.
                 -mode number    : distance mode (2: hamming distance; 3: edit distance; default: 3).
                 -th number      : threshould for distance (integer, >= 0, default: calculated based on input).
                 -att number     : number of attempts for the randomization (integer, > 0, default: calculated based on input).
                 -minws number   : minimal length of common substring between read and reference (integer, > 0, < read length, default: calculated based on input).
                 -maxcdt number  : maximal number of candidates for alignment (integer, > 0, default: 2).
+                -err number     : base error rate, the probability of each nucleotide being a SNP (float, > 0, default: 0.02).
 
-3. Default parameters (calculated with python code):
-th = int(math.floor(error_rate * length + th_para * math.sqrt(length * error_rate * (1 - error_rate))))
-th_para = 4
-att = att_para * (th + 1)
-att_para = 1
-minws = int(math.ceil(length/(th + 1))) + 3
+2. NOTES
+2.1. Default parameters:
+Although we do not know what d, the distance between r and its aligned substring r0, is, it can be estimated by the rates of SNP of the given genome. Let b be the probability of each nucleotide being a SNP; sequencing error rate can additionally be accounted for as well. Given read length m, we can assume that this SNP rate is being distributed by a binomial distribution with mean = mb and variance = mb(1 - b). Then parameters can be calculated with pseudo code as following:
+        th = floor(error_rate * read_length + th_para * sqrt(read_length * error_rate * (1 - error_rate)))
+        att = att_para * (th + 1)
+        minws = ceil(read_length/(th + 1)) + 3
+        where: th_para = 4, att_para = 1
+
+2.2. Data and other problems:
+See the README in /data directory for detailed information about data that RandAL work with. Users can go to http://samtools.sourceforge.net to learn about SAM format and related information.
