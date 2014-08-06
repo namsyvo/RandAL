@@ -1,5 +1,0 @@
-RandAL - Randomized Sequence Aligner
-------------------------------------
-RandAL is implemented in C++; FM-index codes are adapted from an external library (http://code.google.com/p/fmindex-plus-plus). The tool has been tested with Debian Squeeze 6.0.6 and Mac OS 10.7.5.
-
-See MANUAL for how to use RandAL, CHANGLOG for changes version-to-version, VERSION for current version information, and LICENSE for license information.

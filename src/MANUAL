@@ -41,4 +41,4 @@ Although we do not know what d, the distance between r and its aligned substring
         where: th_para = 4, att_para = 1
 
 2.2. Data and other problems:
-See the README in /data directory for detailed information about data that RandAL work with. Users can go to http://samtools.sourceforge.net to learn about SAM format and related information.
+See ../data directory for testing data and ../scripts for supporting scripts to test RandAL. Users can go to http://samtools.sourceforge.net to learn about SAM format and related information.
