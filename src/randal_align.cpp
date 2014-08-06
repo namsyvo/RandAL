@@ -282,9 +282,9 @@ void parse_parameters (int argc, char **argv)
     char *bw_ext = ".bw";
     char *fw_ext = ".fw";
     int len = strlen(indexFile);
-    refFile = new char[len + 3];
-    backwardIndexFile = new char[len + 2];
-    forwardIndexFile = new char[len + 2];
+    refFile = new char[len + 4];
+    backwardIndexFile = new char[len + 3];
+    forwardIndexFile = new char[len + 3];
     strcpy(refFile, indexFile);
     strcat(refFile, ref_ext);
     strcpy(backwardIndexFile, indexFile);
