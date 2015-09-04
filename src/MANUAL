@@ -2,6 +2,7 @@ RandAL - MANUAL
 ---------------
 
 1. USAGE
+--------
 
 1.1. Building RandAL from source code:
 Usage: make [index] [align] [debug] [clean]
@@ -32,7 +33,10 @@ Usage:  randal-align IndexFileName ReadFileName MapFileName [OPTIONS]
                 -maxcdt number  : maximal number of candidates for alignment (integer, > 0, default: 2).
                 -err number     : base error rate, the probability of each nucleotide being a SNP (float, > 0, default: 0.02).
 
+
 2. NOTES
+--------
+
 2.1. Default parameters:
 Although we do not know what d, the distance between r and its aligned substring r0, is, it can be estimated by the rates of SNP of the given genome. Let b be the probability of each nucleotide being a SNP; sequencing error rate can additionally be accounted for as well. Given read length m, we can assume that this SNP rate is being distributed by a binomial distribution with mean = mb and variance = mb(1 - b). Then parameters can be calculated with pseudo code as following:
         th = floor(error_rate * read_length + th_para * sqrt(read_length * error_rate * (1 - error_rate)))
