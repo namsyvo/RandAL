@@ -27,15 +27,15 @@ Sample datasets for testing RandAL:
 
 ./data/genomes: store two reference genomes.
 
-* /Staphylococcus.fasta (bacterium, http://www.ebi.ac.uk/ena/data/view/Taxon:663951)
-* /Drosophila melanogaster chromosome 3R.fasta (eukaryote, http://www.ebi.ac.uk/ena/data/view/AE014297)
+* ./data/genomes/Staphylococcus.fasta (bacterium, http://www.ebi.ac.uk/ena/data/view/Taxon:663951)
+* ./data/genomes/Drosophila melanogaster chromosome 3R.fasta (eukaryote, http://www.ebi.ac.uk/ena/data/view/AE014297)
 
 Genomes are taken from EBI (http://www.ebi.ac.uk). Users also can find reference genomes at NCBI (http://www.ncbi.nlm.nih.gov).
 
 ./data/reads: store simulated reads for above genomes.
 
-* /Staphylococcus: simulated reads for Staphylococcus.
-* /Drosophila3R: simulated reads for Drosophila melanogaster chromosome 3R.
+* ./data/genomes/Staphylococcus: simulated reads for Staphylococcus.
+* ./data/genomes/Drosophila3R: simulated reads for Drosophila melanogaster chromosome 3R.
 
 Reads are generated with a simulator named wgsim (https://github.com/lh3/wgsim). 100,000 reads with length from 35bps to 400bps are generated with default settings. See https://github.com/lh3/wgsim for detailed information on how to generate simulated reads and evaluate the alignment results.
 
