@@ -22,95 +22,6 @@
 
 using namespace std;
 
-/*
-  void exportCF(std::vector<uint32_t> cf){
-	cout<<"I'm about to export: cf.txt (count table)"<<endl;
-	ofstream myfile;
-	myfile.open ("cf.txt");
-	vector<uint32_t>::iterator it;
-	  //cout << "Suffix array contains:"<<endl;
-	for ( it=cf.begin() ; it < cf.end(); it++ ){
-	    //cout << " " << *it;      
-	    myfile << *it<<endl;
-	}
-	 myfile.close();
-  }
-
-  void exportMap(std::map<unsigned char, uint8_t> mapping){
-  	cout<<"I'm about to export: symbol_id_map.txt"<<endl;
-	ofstream myfile;
-	myfile.open ("symbol_id_map.txt");
-	map<uint8_t,unsigned char >::iterator itm1;
-	int i=0;
-	  for ( itm1=mapping.begin() ; itm1 != mapping.end(); itm1++,i++ ){
-	   // cout << i<<"=>" << (*itm1).second<<"\t"<<(*itm1).first  << endl;
-	    myfile << i<<"=>" << (*itm1).second<<"\t"<<(*itm1).first  << endl;
-	}
-	 myfile.close();
-  }
-
-  void exportOCC(std::map<unsigned char, uint8_t> mapping,  vector<uint8_t> s,wat_array::WatArray wa){
-       	cout<<"I'm about to occurance table: occ.txt"<<endl;
-	ofstream myfile;
-	myfile.open ("occ.txt");
-	map<uint8_t,unsigned char >::iterator itm1;
-	int i=0;
-        for(int k=1;k<=s.size(); k++){
-	  for ( itm1=mapping.begin() ; itm1 != mapping.end(); itm1++,i++ ){
-            uint8_t c = (*itm1).first ;
-	    //cout << k<<"=>" << (*itm1).second<<"\t"<< c  << endl;
-	   // myfile << i<<"=>" << (*itm1).second<<"\t"<<(*itm1).first  << endl;
-	    myfile<< wa.Rank(c,k)<<"\t";
-	    //cout << wa.Rank(c,k)<<"\t";
-	 }
-	 // cout<<endl;
-	  myfile<<endl;
-       } 
-	 myfile.close();
-
-  }
-
-  void exportSampledSuffixArray(vector<uint32_t> ssa){
-	cout<<"I'm about to export: sampled_suffix_array.txt "<<endl;
-	ofstream myfile;
-	myfile.open ("sampled_suffix_array.txt");
-	vector<uint32_t>::iterator it;
-	  //cout << "Suffix array contains:"<<endl;
-	for ( it=ssa.begin() ; it < ssa.end(); it++ ){
-	    //cout << " " << *it;      
-	    myfile << *it<<endl;
-	}
-	 myfile.close();
-  }
-
-  void exportSuffixArray(vector<uint32_t> sa){
-	cout<<"I'm about to export: suffix_array.txt"<<endl;
-	ofstream myfile;
-	myfile.open ("suffix_array.txt");
-	vector<uint32_t>::iterator it;
-	  //cout << "Suffix array contains:"<<endl;
-	for ( it=sa.begin() ; it < sa.end(); it++ ){
-	    //cout << " " << *it;      
-	    myfile << *it<<endl;
-	}
-	 myfile.close();  
-  }
-
-  void exportBWT(vector<uint64_t> bwt){
-	cout<<"I'm about to export: bwt.txt"<<endl;
-	ofstream myfile;
-	myfile.open ("bwt.txt");
-	vector<uint64_t>::iterator it;
-	  //cout << "Suffix array contains:"<<endl;
-	for ( it=bwt.begin() ; it < bwt.end(); it++ ){
-	    //cout << " " << *it;      
-	    myfile << *it<<endl;
-	}
-	 myfile.close();
-  }
-
-*/
-
 int fmIndex::read(const char *fname, vector<uint8_t> &s) {
   ifstream ifs(fname);
   string line;
@@ -328,78 +239,30 @@ int fmIndex::buildFmIndex(const char *fname, int _percent) {
   
   fprintf(stderr, "cpu time:%f\n", (eTime - sTime)/CLOCKS_PER_SEC);
 
-/*
-  vector<uint8_t>::iterator it0;
-  cout << "Given string s contains:"<<endl;
-  for ( it0=s.begin() ; it0 < s.end(); it0++ ){
-      //cout << " " << *it0;     
-      printf("%d ",*it0); 
-   }
-  cout << endl;
-
-  exportMap(rmapping);
-  exportSuffixArray(sa);
-  exportSampledSuffixArray(sampledSA);
-  exportBWT(bwt);
-  exportCF(cf);
-  exportOCC(rmapping,s,wa);
-*/
-  
   return 0;
 }
 
 int fmIndex::buildAll(const char *fname, int _percent, vector<uint8_t> &s, vector<uint32_t> &sa, vector<uint64_t> &bwt) {
     percent = _percent;
-    
-//    cerr << "start reading the input-file" << endl;
-    //vector<uint8_t> s;
     read(fname, s);
-
-//    cerr << "alphabet size:" << (int)alphaSize << endl;
-    
-//    double sTime = clock();
-    //vector<uint32_t> sa;
-//    cerr << "build SA" << endl;
     buildSA(s, sa);
-    
-//    cerr << "calculate statistics" << endl;
     calculateStatistics(s);
-    
-    //vector<uint64_t> bwt;
-//    cerr << "build BWT" << endl;
     buildBWT(s, sa, bwt);
-    
-//    cerr << "build WaveletTree" << endl;
     buildWaveletTree(bwt);
-    
-    //cerr << "build sampledSA" << endl;
     buildSampledSA(s, sa);
-    
-//    double eTime = clock();
-    
-//    fprintf(stderr, "cpu time:%f\n", (eTime - sTime)/CLOCKS_PER_SEC);
-    
-//    cerr<<endl<<"Building: ref, suffix array, bwt"<<endl;
-    /*
-     vector<uint8_t>::iterator it0;
-     cout << "Given string s contains:"<<endl;
-     for ( it0=s.begin() ; it0 < s.end(); it0++ ){
-     //cout << " " << *it0;
-     printf("%d ",*it0);
-     }
-     cout << endl;
-     */
-    
-    //exportMap(rmapping);
-    //exportSuffixArray(sa);
-    //exportSampledSuffixArray(sampledSA);
-    //exportBWT(bwt);
-    //exportCF(cf);
-    //exportOCC(rmapping,s,wa);
-    
     return 0;
 }
 
+wat_array::WatArray  fmIndex::getWa(){
+return wa;
+}
+
+std::vector<uint32_t> fmIndex::getCF(){
+ return cf;
+}
+
+
+//Search functions
 void fmIndex::search(const std::vector<uint8_t> &qs, std::pair<uint64_t, uint64_t> &res) {
   size_t sp = 1, ep = wa.length();
   uint8_t c;
@@ -465,15 +328,6 @@ inline int min(int a, int b, int c) {
       return c;
   }
 }
-
-wat_array::WatArray  fmIndex::getWa(){
-return wa;
-}
-
-std::vector<uint32_t> fmIndex::getCF(){
- return cf;
-}
-
 
 void fmIndex::searchEdit(const vector<uint8_t> &qs, int dist, vector<pair<uint64_t, uint64_t> > &res) {
   res.clear();

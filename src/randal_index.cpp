@@ -1,5 +1,5 @@
 /* 
- *   Copyright (c) 2012 Memphis-CS Genome Assembly Group
+ *   Copyright (c) 2012 Memphis-CS Read Alignment Project
  *   Copyright (c) 2010 Yasuo Tabei
  * 
  *   Redistribution and use in source and binary forms, with or without
@@ -98,10 +98,6 @@ int main(int argc, char **argv) {
   f.buildFmIndex(oname1, percent);
   ofstream os1(index2);
   f.save(os1);
-
-  //f.buildFmIndex(fname, percent);
-  //ofstream os(oname);
-  //f.save(os);
 
   return 0;
 }

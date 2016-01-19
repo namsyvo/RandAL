@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2012 Memphis-CS Genome Assembly Group
+ *   Copyright (c) 2012 Memphis-CS Read Alignment Project
  *   Copyright (c) 2010 Daisuke Okanohara
  *
  *   Redistribution and use in source and binary forms, with or without
